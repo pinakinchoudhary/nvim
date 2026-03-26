@@ -18,6 +18,8 @@ require('lazy').setup({
   { import = 'plugins.tabout' },
   { import = 'plugins.move' },
   { import = 'plugins.float-terminal' },
+  { import = 'plugins.markdown' },
+  { import = 'plugins.neogit' },
 }, {
   checker = { enabled = true },
   change_detection = { notify = false },
