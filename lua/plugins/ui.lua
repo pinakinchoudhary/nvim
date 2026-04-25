@@ -43,15 +43,9 @@ return {
       hl(0, 'LineNr', { bg = 'none' })
       hl(0, 'FoldColumn', { bg = 'none' })
 
-      -- Neo-tree (active + inactive)
-      hl(0, 'NeoTreeNormal', { bg = 'none' })
-      hl(0, 'NeoTreeNormalNC', { bg = 'none' })
-      hl(0, 'NeoTreeEndOfBuffer', { bg = 'none' })
-      hl(0, 'NeoTreeWinSeparator', { bg = 'none' })
-      hl(0, 'NeoTreeCursorLine', { bg = 'none' })
-      hl(0, 'NeoTreeVertSplit', { bg = 'none' })
-      hl(0, 'NeoTreeStatusLine', { bg = 'none' })
-      hl(0, 'NeoTreeStatusLineNC', { bg = 'none' })
+      hl(0, 'OilNormal', { bg = 'none' })
+      hl(0, 'OilFloat', { bg = 'none' })
+      hl(0, 'OilFloatBorder', { bg = 'none' })
     end,
   },
 

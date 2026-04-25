@@ -36,8 +36,13 @@ vim.g.clipboard = {
   },
 }
 
+-- term gui colors
+vim.opt.termguicolors = true
+vim.o.winborder = 'rounded'
+
 -- Enable break indent
 vim.o.breakindent = true
+vim.o.linebreak = true
 
 -- Save undo history
 vim.o.undofile = true
@@ -48,6 +53,7 @@ vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
+vim.o.statuscolumn = ''
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -58,6 +64,7 @@ vim.o.timeoutlen = 300
 -- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
+vim.o.splitkeep = 'screen'
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -69,6 +76,7 @@ vim.o.splitbelow = true
 --   and `:help lua-options-guide`
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.fillchars = { eob = ' ', fold = ' ', foldopen = '', foldsep = ' ', foldclose = '' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -78,6 +86,13 @@ vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
+vim.o.sidescrolloff = 8
+
+-- Keep buffers hidden instead of forcing writes when switching away.
+vim.o.hidden = true
+
+-- Better completion menu behavior for command-line and LSP completion UIs.
+vim.o.completeopt = 'menu,menuone,noselect'
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
