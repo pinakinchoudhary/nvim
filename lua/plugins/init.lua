@@ -17,6 +17,7 @@ require('lazy').setup({
   { import = 'plugins.navigation' },
   { import = 'plugins.tasks' },
   { import = 'plugins.quickfix' },
+  { import = 'plugins.render-markdown' },
 }, {
   checker = { enabled = true },
   change_detection = { notify = false },
