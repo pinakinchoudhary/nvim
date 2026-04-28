@@ -40,3 +40,18 @@ vim.keymap.set('n', '<leader>rw', [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { desc 
 
 -- Or via lua api
 vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Open Neogit UI' })
+
+vim.keymap.set('n', '<leader>P', function()
+  vim.o.paste = true
+  vim.cmd 'startinsert'
+  vim.notify('PASTE MODE', vim.log.levels.WARN)
+end, { desc = 'Paste Mode (Enter Insert)' })
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+  callback = function()
+    if vim.o.paste then
+      vim.o.paste = false
+      vim.notify('Paste Mode Off', vim.log.levels.INFO)
+    end
+  end,
+})
