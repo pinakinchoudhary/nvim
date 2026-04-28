@@ -32,15 +32,33 @@ if [[ "$OS" == "mac" ]]; then
   brew list tmux >/dev/null 2>&1 || brew install tmux
 
 elif [[ "$OS" == "linux" ]]; then
+  # --- Prefer Snap for latest Neovim ---
+  if command -v snap >/dev/null 2>&1; then
+    echo "[*] Installing Neovim via snap (latest)..."
+    sudo snap install nvim --classic || echo "[!] Snap install failed, will fallback"
+  else
+    echo "[!] snap not found, falling back to package manager"
+  fi
+
+  # --- Install tmux + rsync via package manager ---
   if command -v apt >/dev/null 2>&1; then
     sudo apt update
-    sudo apt install -y neovim tmux rsync
+    sudo apt install -y tmux rsync
+
+    # Only install neovim via apt if snap failed AND nvim not present
+    if ! command -v nvim >/dev/null 2>&1; then
+      echo "[!] Installing Neovim via apt (may be outdated)"
+      sudo apt install -y neovim
+    fi
+
   elif command -v dnf >/dev/null 2>&1; then
-    sudo dnf install -y neovim tmux rsync
+    sudo dnf install -y tmux rsync neovim
+
   elif command -v pacman >/dev/null 2>&1; then
-    sudo pacman -Sy --noconfirm neovim tmux rsync
+    sudo pacman -Sy --noconfirm tmux rsync neovim
+
   else
-    echo "[!] Unsupported package manager. Install neovim, tmux, rsync manually."
+    echo "[!] Unsupported package manager. Install dependencies manually."
   fi
 fi
 
