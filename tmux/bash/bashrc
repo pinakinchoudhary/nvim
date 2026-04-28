@@ -1,5 +1,0 @@
-# Sourced by tmux via bash --init-file. Load the real bashrc first, then override 'clear'.
-[[ -f ~/.bashrc ]] && source ~/.bashrc
-
-# Override 'clear' so it never sends \033[3J, preserving tmux scrollback.
-alias clear='printf "\033[H\033[2J"'

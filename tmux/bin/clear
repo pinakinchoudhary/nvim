@@ -1,3 +1,0 @@
-#!/bin/sh
-# Clear visible screen only. Deliberately omits \033[3J so tmux scrollback is preserved.
-printf '\033[H\033[2J'
