@@ -18,6 +18,7 @@ require('lazy').setup({
   { import = 'plugins.tasks' },
   { import = 'plugins.quickfix' },
   { import = 'plugins.render-markdown' },
+  { import = 'plugins.noice' },
 }, {
   checker = { enabled = true },
   change_detection = { notify = false },
