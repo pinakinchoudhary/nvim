@@ -10,11 +10,11 @@ Current active setup after pruning overlapping tools.
 
 ## Plugin Imports
 
-- `plugins.lsp`
+- `plugins.lsp` (includes `blink.cmp`, `conform.nvim`)
 - `plugins.treesitter`
-- `plugins.ui`
+- `plugins.ui` (includes `catppuccin`, `todo-comments`)
 - `plugins.debug`
-- `plugins.misc`
+- `plugins.misc` (includes `which-key`, `mini.nvim`, `guess-indent`)
 - `plugins.autopairs`
 - `plugins.gitsigns`
 - `plugins.lint`
@@ -25,9 +25,13 @@ Current active setup after pruning overlapping tools.
 - `plugins.move`
 - `plugins.neogit`
 - `plugins.snacks`
-- `plugins.navigation`
-- `plugins.tasks`
-- `plugins.quickfix`
+- `plugins.navigation` (includes `oil`, `grapple`, `outline`, `atone`)
+- `plugins.tasks` (includes `overseer`, `neotest`)
+- `plugins.quickfix` (includes `quicker`)
+- `plugins.render-markdown`
+- `plugins.noice`
+- `plugins.obsidian`
+- `plugins.pomo`
 
 ## Deliberately Removed
 
@@ -37,33 +41,12 @@ Current active setup after pruning overlapping tools.
 - Tabout: removed to avoid overlap with Blink/LuaSnip/autopairs.
 - Indent-blankline: replaced by Snacks indent.
 - Standalone nvim-notify: replaced by Snacks notifier.
-- Render-markdown: removed because it triggers a Neovim 0.12.2 Treesitter markdown parser error loop.
-- **Markdown Treesitter Support**: Completely disabled across all plugins (nvim-treesitter, snacks.nvim) to prevent Neovim 0.12 crashes.
 
 ## Search, UI, And QoL
 
 - `folke/snacks.nvim`
   - Central UX layer.
   - Enabled: bigfile, input, notifier, quickfile, statuscolumn, words, picker, scroll, indent, terminal, zen, scope.
-  - **Hard-disabled Treesitter for Markdown**:
-    - `scope` and `indent` filter out markdown buffers.
-    - `picker` previewer force-stops Treesitter and falls back to regex syntax for markdown files.
-  - Keymaps:
-    - `<leader>p` smart picker.
-    - `<leader>,` buffers.
-    - `<leader>:` command history.
-    - `<leader>n` notification history.
-    - `<leader>z` zen mode.
-    - `<leader>tt` floating terminal.
-  - Toggle maps:
-    - `<leader>tw` wrap.
-    - `<leader>ts` spell.
-    - `<leader>td` diagnostics.
-    - `<leader>th` inlay hints.
-    - `<leader>ti` indent.
-    - `<leader>tz` dim.
-    - `<leader>tn` line numbers.
-    - `<leader>tr` relative numbers.
 - `catppuccin/nvim`
   - Main colorscheme, transparent core/Oil highlights.
 - `folke/todo-comments.nvim`
@@ -72,24 +55,19 @@ Current active setup after pruning overlapping tools.
   - In-buffer jump/search.
 - `j-hui/fidget.nvim`
   - LSP progress UI.
+- `folke/noice.nvim`
+  - UI for messages, cmdline and popupmenu.
 
 ## Files And Navigation
 
 - `stevearc/oil.nvim`
   - Owns directory buffers, including `nvim .`.
-  - `-` opens parent directory.
-  - `<leader>o` opens Oil in a float.
-  - Shows hidden files and icon column.
 - `cbochs/grapple.nvim`
   - Project-scoped file tags.
-  - `<leader>m` toggles the current file tag.
-  - `<leader>M` opens the tag list window.
-  - `<leader>1` through `<leader>4` jump to tags.
-  - `<leader>[` / `<leader>]` cycle tags.
 - `hedyhli/outline.nvim`
-  - `<leader>so` toggles LSP/markdown symbol outline.
+  - LSP/markdown symbol outline.
 - `XXiaoA/atone.nvim`
-  - `<leader>u` toggles undo tree.
+  - Undo tree visualizer.
 
 ## LSP, Completion, Formatting
 
@@ -97,26 +75,23 @@ Current active setup after pruning overlapping tools.
   - Lua development support for Neovim config/plugin code.
 - `neovim/nvim-lspconfig`
   - Mason-backed LSP setup with Blink capabilities.
-  - LSP symbol/reference pickers now use Snacks picker APIs.
-  - Configures `lua_ls`.
 - `saghen/blink.cmp`
   - Completion engine with LuaSnip snippets and lazydev source.
 - `L3MON4D3/LuaSnip`
   - Snippet engine.
 - `stevearc/conform.nvim`
-  - `<leader>f` formats; Lua uses `stylua`.
+  - Formatter; Lua uses `stylua`.
 - `mfussenegger/nvim-lint`
-  - Markdown linting with `markdownlint`.
+  - Linting with `markdownlint`.
 
 ## Editing
 
 - `nvim-treesitter/nvim-treesitter`
-  - **Branch: master** (reverted from main due to update failures).
-  - Highlighting and indentation (Markdown disabled).
+  - Highlighting and indentation.
 - `windwp/nvim-autopairs`
   - Pair insertion.
 - `fedepujol/move.nvim`
-  - `<A-j>` / `<A-k>` move lines and visual blocks.
+  - Move lines and visual blocks.
 - `echasnovski/mini.nvim`
   - `mini.ai`, `mini.surround`, and `mini.statusline`.
 - `NMAC427/guess-indent.nvim`
@@ -125,35 +100,28 @@ Current active setup after pruning overlapping tools.
 ## Git
 
 - `lewis6991/gitsigns.nvim`
-  - Signs, hunk navigation, hunk staging/reset/preview/blame/diff keymaps.
+  - Git signs and hunk operations.
 - `NeogitOrg/neogit`
-  - `<leader>gg` and `:Neogit`.
-  - Uses `diffview.nvim` as the optional diff integration.
+  - Git interface.
 
 ## Tasks, Tests, Debugging
 
-- `mfussenegger/nvim-dap`
-- `rcarriga/nvim-dap-ui`
-- `jay-babu/mason-nvim-dap.nvim`
-- `leoluz/nvim-dap-go`
+- `mfussenegger/nvim-dap` & `rcarriga/nvim-dap-ui`
 - `stevearc/overseer.nvim`
-  - `<leader>or`, `<leader>ot`, `<leader>oa`.
-- `nvim-neotest/neotest` with `neotest-go`
-  - `<leader>nr`, `<leader>nf`, `<leader>na`, `<leader>nd`, `<leader>ns`, `<leader>no`, `<leader>nO`, `<leader>nv`.
+  - Task runner.
+- `nvim-neotest/neotest`
+  - Test runner.
 
 ## Quickfix
 
 - `stevearc/quicker.nvim`
-  - `<leader>qq` toggles quickfix.
-  - `<leader>ql` toggles location list.
-  - `>` expands context.
-  - `<` collapses context.
+  - Quickfix and location list enhancement.
 
-## Verification
+## Notes & Productivity
 
-- Ran `nvim --headless '+Lazy! sync' '+qa'`.
-- Ran `nvim --headless '+qa'`.
-- Ran `nvim --headless . '+qa'`.
-- Ran `nvim --headless NEOVIM_INVENTORY.md '+qa'`.
-- Ran explicit lazy-load/integration check for Snacks, Oil, Grapple, Neotest, Overseer, Quicker, Outline, and Atone.
-- Ran Stylua on edited Lua files.
+- `epwalsh/obsidian.nvim`
+  - Obsidian vault integration.
+- `epwalsh/pomo.nvim`
+  - Pomodoro timer.
+- `MeanderingProgrammer/render-markdown.nvim`
+  - Markdown rendering in Neovim.

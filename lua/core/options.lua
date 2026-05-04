@@ -105,3 +105,13 @@ vim.o.completeopt = 'menu,menuone,noselect'
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+-- Disable diagnostics for markdown
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'markdown', 'markdown_inline' },
+  callback = function(args)
+    vim.schedule(function()
+      vim.diagnostic.enable(false, { bufnr = args.buf })
+    end)
+  end,
+})

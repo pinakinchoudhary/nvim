@@ -19,6 +19,8 @@ require('lazy').setup({
   { import = 'plugins.quickfix' },
   { import = 'plugins.render-markdown' },
   { import = 'plugins.noice' },
+  { import = 'plugins.obsidian' },
+  { import = 'plugins.pomo' },
 }, {
   checker = { enabled = true },
   change_detection = { notify = false },
