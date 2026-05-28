@@ -115,3 +115,13 @@ vim.api.nvim_create_autocmd('FileType', {
     end)
   end,
 })
+
+--- fix register/macro not working
+vim.o.timeoutlen = 300
+vim.o.ttimeoutlen = 10
+
+--- tab stop of 4 spaces instead of default 8
+vim.opt.expandtab = true -- Insert spaces instead of tabs
+vim.opt.tabstop = 4 -- Visual width of a tab character
+vim.opt.shiftwidth = 4 -- Number of spaces for auto-indentation
+vim.opt.softtabstop = 4 -- Number of spaces inserted when pressing Tab/Backspace

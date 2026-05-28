@@ -55,3 +55,14 @@ vim.api.nvim_create_autocmd('InsertLeave', {
     end
   end,
 })
+
+-- Fast escape from insert mode
+vim.keymap.set('i', 'jk', '<Esc>', {
+  desc = 'Exit insert mode',
+})
+
+-- Word Wrap
+vim.keymap.set('n', '<leader>ww', '<cmd>set wrap!<CR>', { desc = 'Toggle word wrap' })
+
+-- escape closing brackets
+vim.api.nvim_set_keymap('i', '<C-e>', '<Esc>:lua AutoPairsJump()<CR>a', { noremap = true, silent = true })

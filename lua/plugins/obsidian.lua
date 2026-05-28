@@ -28,8 +28,8 @@ return {
     'ObsidianTOC',
   },
   event = {
-    'BufReadPre ' .. vim.fn.expand '~' .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian/**.md',
-    'BufNewFile ' .. vim.fn.expand '~' .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian/**.md',
+    'BufReadPre ' .. vim.fn.expand '~' .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/success/**.md',
+    'BufNewFile ' .. vim.fn.expand '~' .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/success/**.md',
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -39,7 +39,7 @@ return {
     workspaces = {
       {
         name = 'personal',
-        path = '/Users/pinakinchoudhary/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian/',
+        path = '/Users/pinakinchoudhary/Library/Mobile Documents/iCloud~md~obsidian/Documents/success/',
       },
     },
     completion = {

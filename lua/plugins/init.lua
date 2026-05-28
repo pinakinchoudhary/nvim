@@ -21,6 +21,7 @@ require('lazy').setup({
   { import = 'plugins.noice' },
   { import = 'plugins.obsidian' },
   { import = 'plugins.pomo' },
+  { import = 'plugins.tabout' },
 }, {
   checker = { enabled = true },
   change_detection = { notify = false },
