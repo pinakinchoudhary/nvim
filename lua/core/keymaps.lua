@@ -64,5 +64,23 @@ vim.keymap.set('i', 'jk', '<Esc>', {
 -- Word Wrap
 vim.keymap.set('n', '<leader>ww', '<cmd>set wrap!<CR>', { desc = 'Toggle word wrap' })
 
--- escape closing brackets
-vim.api.nvim_set_keymap('i', '<C-e>', '<Esc>:lua AutoPairsJump()<CR>a', { noremap = true, silent = true })
+-- Window split management (from Salar's config)
+vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
+vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = 'Split window horizontally' })
+vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = 'Make splits equal size' })
+vim.keymap.set('n', '<leader>wx', '<cmd>close<CR>', { desc = 'Close current split' })
+
+-- Window resize with arrow keys (from Salar's config)
+vim.keymap.set('n', '<C-Up>', ':resize +2<CR>', { silent = true, desc = 'Increase window height' })
+vim.keymap.set('n', '<C-Down>', ':resize -2<CR>', { silent = true, desc = 'Decrease window height' })
+vim.keymap.set('n', '<C-Left>', ':vertical resize -4<CR>', { silent = true, desc = 'Narrow window' })
+vim.keymap.set('n', '<C-Right>', ':vertical resize +4<CR>', { silent = true, desc = 'Widen window' })
+
+-- Center cursor on half-page scroll (from Salar's config)
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and center' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and center' })
+
+-- Theme commands (from Salar's config)
+vim.keymap.set('n', '<leader>Ts', '<cmd>Theme<CR>', { desc = 'Select theme' })
+vim.keymap.set('n', '<leader>Tn', '<cmd>ThemeNext<CR>', { desc = 'Next theme' })
+vim.keymap.set('n', '<leader>Tp', '<cmd>ThemePrev<CR>', { desc = 'Prev theme' })

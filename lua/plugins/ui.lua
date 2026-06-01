@@ -1,58 +1,48 @@
-return {
-  -- lazy.nvim UI options
-  ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
+-- UI plugins: koda (default) + full colorscheme collection + todo-comments
+-- Salar's exact default theme is "koda" (oskarnurm/koda.nvim)
+-- Switch with :Theme, :ThemeNext, :ThemePrev  |  <leader>Ts/Tn/Tp
 
-  -- plugins (numeric entries only)
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
+local colorschemes = require 'core.colorschemes'
+
+-- Build lazy specs for every colorscheme repo (all lazy except koda)
+local colorscheme_specs = vim.tbl_map(function(item)
+  local spec = {
+    item.repo,
+    lazy = true,
     priority = 1000,
-    config = function()
-      require('catppuccin').setup {
-        styles = {
-          comments = {},
-        },
-      }
+  }
+  if item.name then
+    spec.name = item.name
+  end
+  return spec
+end, colorschemes.items)
 
-      vim.cmd.colorscheme 'catppuccin'
-      -- transparent background
-      local hl = vim.api.nvim_set_hl
-
-      -- Core editor (active + inactive)
-      hl(0, 'Normal', { bg = 'none' })
-      hl(0, 'NormalNC', { bg = 'none' })
-      hl(0, 'NormalFloat', { bg = 'none' })
-      hl(0, 'SignColumn', { bg = 'none' })
-      hl(0, 'EndOfBuffer', { bg = 'none' })
-      hl(0, 'LineNr', { bg = 'none' })
-      hl(0, 'FoldColumn', { bg = 'none' })
-
-      hl(0, 'OilNormal', { bg = 'none' })
-      hl(0, 'OilFloat', { bg = 'none' })
-      hl(0, 'OilFloatBorder', { bg = 'none' })
-    end,
-  },
-
-  {
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-  },
+-- koda is the primary: load eagerly, run theme.setup() from here
+local koda_init = {
+  'oskarnurm/koda.nvim',
+  lazy = false,
+  priority = 1001,
+  config = function()
+    -- theme.setup() loads persisted theme (or koda as fallback)
+    require('core.theme').setup { default = 'koda' }
+  end,
 }
+
+-- Build final spec list: koda_init first, then all others (skip koda repo since koda_init covers it)
+local specs = { koda_init }
+for _, spec in ipairs(colorscheme_specs) do
+  local repo = type(spec[1]) == 'string' and spec[1] or ''
+  if repo ~= 'oskarnurm/koda.nvim' then
+    table.insert(specs, spec)
+  end
+end
+
+-- todo-comments
+table.insert(specs, {
+  'folke/todo-comments.nvim',
+  event = 'VimEnter',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  opts = { signs = false },
+})
+
+return specs
