@@ -16,11 +16,11 @@ return {
           return vim.bo[buf].filetype ~= 'markdown' and vim.bo[buf].filetype ~= 'markdown_inline'
         end,
       },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
+      statuscolumn = { enabled = false }, -- vim.o.statuscolumn is '' anyway; dead code
+      words = { enabled = false },
       picker = { enabled = true },
       image = { enabled = false },
-      scroll = { enabled = true },
+      scroll = { enabled = false }, -- satellite already provides the scrollbar
       indent = {
         enabled = true,
         animate = { enabled = false },
@@ -126,10 +126,10 @@ return {
               opts = opts or {}
               local ft = opts.ft
               if not ft and (opts.file or opts.buf) then
-                ft = vim.filetype.match({
+                ft = vim.filetype.match {
                   buf = opts.buf or self.win.buf,
                   filename = opts.file,
-                })
+                }
               end
 
               if ft == 'markdown' or ft == 'markdown_inline' then

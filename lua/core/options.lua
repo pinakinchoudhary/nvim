@@ -67,6 +67,7 @@ vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
+vim.o.ttimeoutlen = 10
 
 -- Configure how new splits should be opened
 vim.o.splitright = true
@@ -117,9 +118,6 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 --- fix register/macro not working
-vim.o.timeoutlen = 300
-vim.o.ttimeoutlen = 10
-
 --- tab stop of 4 spaces instead of default 8
 vim.opt.expandtab = true -- Insert spaces instead of tabs
 vim.opt.tabstop = 4 -- Visual width of a tab character

@@ -1,7 +1,7 @@
 return {
   {
     'stevearc/oil.nvim',
-    lazy = false,
+    event = 'VeryLazy', -- keep startup lean; keys below load it on demand
     dependencies = { { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font } },
     keys = {
       { '-', '<cmd>Oil<CR>', desc = 'Open parent directory' },

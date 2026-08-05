@@ -32,24 +32,17 @@ vim.api.nvim_create_autocmd('FileType', {
 local function apply_transparency()
   local hl = vim.api.nvim_set_hl
   -- Core editor (active + inactive)
-  hl(0, 'Normal',      { bg = 'none' })
-  hl(0, 'NormalNC',    { bg = 'none' })
+  hl(0, 'Normal', { bg = 'none' })
+  hl(0, 'NormalNC', { bg = 'none' })
   hl(0, 'NormalFloat', { bg = 'none' })
-  hl(0, 'SignColumn',  { bg = 'none' })
+  hl(0, 'SignColumn', { bg = 'none' })
   hl(0, 'EndOfBuffer', { bg = 'none' })
-  hl(0, 'LineNr',      { bg = 'none' })
-  hl(0, 'FoldColumn',  { bg = 'none' })
+  hl(0, 'LineNr', { bg = 'none' })
+  hl(0, 'FoldColumn', { bg = 'none' })
   -- Oil
-  hl(0, 'OilNormal',       { bg = 'none' })
-  hl(0, 'OilFloat',        { bg = 'none' })
-  hl(0, 'OilFloatBorder',  { bg = 'none' })
-  -- nvim-tree
-  hl(0, 'NvimTreeNormal',       { bg = 'none' })
-  hl(0, 'NvimTreeNormalNC',     { bg = 'none' })
-  hl(0, 'NvimTreeEndOfBuffer',  { bg = 'none' })
-  hl(0, 'NvimTreeWinSeparator', { bg = 'none' })
-  hl(0, 'NvimTreeStatusLine',   { bg = 'none' })
-  hl(0, 'NvimTreeStatusLineNC', { bg = 'none' })
+  hl(0, 'OilNormal', { bg = 'none' })
+  hl(0, 'OilFloat', { bg = 'none' })
+  hl(0, 'OilFloatBorder', { bg = 'none' })
 end
 
 vim.api.nvim_create_autocmd('ColorScheme', {

@@ -1,5 +1,8 @@
 return {
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  {
+    'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+    event = { 'BufReadPost', 'BufNewFile' },
+  },
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
