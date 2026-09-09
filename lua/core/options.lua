@@ -123,3 +123,8 @@ vim.opt.expandtab = true -- Insert spaces instead of tabs
 vim.opt.tabstop = 4 -- Visual width of a tab character
 vim.opt.shiftwidth = 4 -- Number of spaces for auto-indentation
 vim.opt.softtabstop = 4 -- Number of spaces inserted when pressing Tab/Backspace
+
+-- Statusline at the top (lualine renders into the tabline); avoids doubling up
+-- with tmux's status bar at the bottom. Set here too so there's no startup flicker.
+vim.opt.laststatus = 0
+vim.opt.showtabline = 2

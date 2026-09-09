@@ -23,6 +23,7 @@ require('lazy').setup({
   { import = 'plugins.dressing' }, -- enhanced vim.ui.select (from Salar)
 }, {
   checker = { enabled = false }, -- no background git fetch; run :Lazy check manually
+  rocks = { enabled = false }, -- no luarocks/hererocks (oxocarbon.nvim etc. don't need it)
   change_detection = { notify = false },
   ui = {
     icons = vim.g.have_nerd_font and {} or {

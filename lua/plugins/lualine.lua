@@ -9,6 +9,11 @@ return {
       local lualine = require 'lualine'
       local lazy_status = require 'lazy.status'
 
+      -- Statusline lives at the TOP (rendered as the tabline) so it doesn't
+      -- collide with tmux's status bar at the bottom.
+      vim.opt.laststatus = 0
+      vim.opt.showtabline = 2
+
       lualine.setup {
         options = {
           theme = 'auto',
@@ -16,7 +21,9 @@ return {
           section_separators = { left = '', right = '' },
           globalstatus = true,
         },
-        sections = {
+        sections = {},
+        inactive_sections = {},
+        tabline = {
           lualine_a = { 'mode' },
           lualine_b = { 'branch', 'diff', 'diagnostics' },
           lualine_c = { { 'filename', path = 1 } },
